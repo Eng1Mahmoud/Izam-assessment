@@ -33,7 +33,12 @@ export default function DetailContent({ id }: { id: string }) {
     <div className="overflow-hidden rounded-2xl bg-white shadow-card ring-1 ring-slate-900/5">
       {/* Header banner */}
       <div className="bg-gradient-to-r from-violet-500 to-pink-500 px-6 py-5 text-white text-center">
-        <p className="text-lg font-semibold">⚡ {capitalize(data.name)}</p>
+        <p className="text-lg font-semibold flex items-center justify-center gap-1.5">
+          <svg className="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path fillRule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.818a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.845-.143z" clipRule="evenodd" />
+          </svg>
+          {capitalize(data.name)}
+        </p>
         <p className="text-sm opacity-80">#{String(data.id).padStart(3, "0")}</p>
       </div>
 
@@ -64,15 +69,24 @@ export default function DetailContent({ id }: { id: string }) {
           </div>
 
           <div className="mt-6 grid w-full grid-cols-2 gap-3 text-center">
+            {/* Height */}
             <div className="rounded-lg bg-slate-50 py-3">
               <p className="text-xs text-slate-400">📏 Height</p>
               <p className="text-sm font-semibold text-slate-700">
                 {(data.height / 10).toFixed(1)} m
               </p>
             </div>
-            <div className="rounded-lg bg-slate-50 py-3">
-              <p className="text-xs text-slate-400">⚖️ Weight</p>
-              <p className="text-sm font-semibold text-slate-700">
+            {/* Weight */}
+            <div className="rounded-[8px] bg-slate-50/70 py-3 flex flex-col items-center justify-center border border-slate-100/50">
+              <div className="flex items-center gap-1 text-xs text-slate-400">
+                {/* Weight icon */}
+                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 12a6 6 0 0112 0v6a2 2 0 01-2 2H8a2 2 0 01-2-2v-6z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 6a3 3 0 016 0v6H9V6z" />
+                </svg>
+                <span>Weight</span>
+              </div>
+              <p className="mt-1 text-sm font-semibold text-slate-700">
                 {(data.weight / 10).toFixed(1)} kg
               </p>
             </div>
@@ -92,15 +106,22 @@ export default function DetailContent({ id }: { id: string }) {
 
           <div className="mb-6">
             <p className="mb-2 text-sm font-bold text-slate-800">Abilities</p>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-col items-start gap-2">
               {data.abilities.map((a) => (
-                <span
-                  key={a.name}
-                  className="rounded-md bg-slate-100 px-2 py-1 text-xs capitalize text-slate-600"
-                >
-                  {a.name.replace(/-/g, " ")}
-                  {a.isHidden && <span className="ml-1 text-slate-400">(Hidden)</span>}
-                </span>
+                <div key={a.name} className="flex items-center text-xs">
+                  <span className={`rounded-full px-3 py-1 font-medium capitalize ${
+                    a.isHidden
+                      ? "bg-slate-100 text-slate-500"
+                      : "bg-slate-50 text-slate-700 border border-slate-200/60"
+                  }`}>
+                    {a.name.replace(/-/g, " ")}
+                  </span>
+                  {a.isHidden && (
+                    <span className="ml-2 text-xs text-slate-400">
+                      (Hidden)
+                    </span>
+                  )}
+                </div>
               ))}
             </div>
           </div>
