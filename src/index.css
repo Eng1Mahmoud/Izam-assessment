@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  /* Custom colors */
+  --color-pokedex-bg1: #eaf7ef;
+  --color-pokedex-bg2: #e6f0fb;
+
+  /* Custom box shadow */
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+html, body, #root {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+/* Per-mode/page gradients, matching the reference designs. */
+.bg-gradient-pagination {
+  background: linear-gradient(135deg, #eef1fd 0%, #e6eafb 100%);
+}
+.bg-gradient-infinite {
+  background: linear-gradient(135deg, #eafaf1 0%, #e3f6ea 100%);
+}
+.bg-gradient-detail {
+  background: linear-gradient(135deg, #fdf1f8 0%, #fbe7f4 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
